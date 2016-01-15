@@ -23,11 +23,14 @@ public class LinkController : MonoBehaviour {
 		float routineStartTime = Time.time;
 		const float fadeDurationS = 0.5f;
 		float routineElapsedTime = 0;
+		float fadeStartTime = 0;
+		float fadeEndTime = fadeDurationS;
 		float lerpPct = 0;
 
-		while (routineElapsedTime < fadeDurationS)
+		while (routineElapsedTime < fadeEndTime)
 		{
-			lerpPct =  routineElapsedTime / fadeDurationS;
+			lerpPct =  routineElapsedTime / fadeEndTime;
+//			Debug.LogFormat("0 routineElapsedTime={0} fadeEndTime={1} lerpPct={2}", routineElapsedTime, fadeEndTime, lerpPct);
 			Color overlayColor = new Color(0, 0, 0, Mathf.Lerp(0, 1, lerpPct));
 			screenOverlay.color = overlayColor;
 			yield return null;
@@ -36,10 +39,14 @@ public class LinkController : MonoBehaviour {
 
 		Camera.main.transform.position = linkPanelCamera.transform.position;
 		Camera.main.transform.rotation = linkPanelCamera.transform.rotation;
+		yield return new WaitForSeconds(0.5f);
 
-		while (routineElapsedTime < fadeDurationS * 2)
+		fadeStartTime = routineElapsedTime;
+		fadeEndTime = routineElapsedTime + fadeDurationS;
+		while (routineElapsedTime < fadeEndTime)
 		{
-			lerpPct =  routineElapsedTime / (fadeDurationS * 2);
+			lerpPct =  (routineElapsedTime - fadeStartTime) / (fadeEndTime - fadeStartTime);
+//			Debug.LogFormat("1 routineElapsedTime={0} fadeStartTime={1} fadeEndTime={2} lerpPct={3}", routineElapsedTime, fadeStartTime, fadeEndTime, lerpPct);
 			Color overlayColor = new Color(0, 0, 0, Mathf.Lerp(1, 0, lerpPct));
 			screenOverlay.color = overlayColor;
 			yield return null;
