@@ -9,8 +9,7 @@ public class LinkController : MonoBehaviour {
 	[System.Serializable]
 	public class AgeData {
 		public string name;
-		public LayerMask cullingMask;
-		public GameObject linkPanelCamera;
+		public Camera linkPanelCamera;
 	}
 
 	public AgeData[] ages;
@@ -21,7 +20,7 @@ public class LinkController : MonoBehaviour {
 	}
 
 	void Start() {
-		pushAgeSettings(ages[0]);
+//		pushAgeSettings(ages[0]);
 	}
 	
 	public void LinkTo(string ageName) {
@@ -72,7 +71,8 @@ public class LinkController : MonoBehaviour {
 	}
 
 	void pushAgeSettings(AgeData age) {
-		Camera.main.cullingMask = age.cullingMask;
+		Debug.LogFormat("linkpanelam {0}", age.linkPanelCamera.cullingMask);
+		Camera.main.cullingMask = age.linkPanelCamera.cullingMask;
 
 		Camera.main.transform.position = age.linkPanelCamera.transform.position;
 		Camera.main.transform.rotation = age.linkPanelCamera.transform.rotation;
