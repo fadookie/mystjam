@@ -4,23 +4,34 @@ using System.Collections;
 
 public class LinkController : MonoBehaviour {
 
-	public GameObject linkPanelCamera;
 	public Image screenOverlay;
+
+	[System.Serializable]
+	public class AgeData {
+		public string name;
+		public LayerMask cullingMask;
+		public GameObject linkPanelCamera;
+	}
+
+	public AgeData[] ages;
 
 	// Use this for initialization
 	void Awake () {
 		Services.instance.Set<LinkController>(this);
 	}
+
+	void Start() {
+		pushAgeSettings(ages[0]);
+	}
 	
-	public void LinkTo(string linkName) {
-		Debug.LogFormat("LinkController: Link to {0}", linkName);
-		StartCoroutine(linkRoutine(linkName));
+	public void LinkTo(string ageName) {
+		Debug.LogFormat("LinkController: Link to {0}", ageName);
+		StartCoroutine(linkRoutine(ageName));
 	}
 
-	IEnumerator linkRoutine(string linkName) {
+	IEnumerator linkRoutine(string ageName) {
 		Services.instance.Get<SoundManager>().playOneShot(SoundManager.Sound.Link);
 
-		float routineStartTime = Time.time;
 		const float fadeDurationS = 0.5f;
 		float routineElapsedTime = 0;
 		float fadeStartTime = 0;
@@ -37,8 +48,8 @@ public class LinkController : MonoBehaviour {
 			routineElapsedTime += Time.deltaTime;
 		}
 
-		Camera.main.transform.position = linkPanelCamera.transform.position;
-		Camera.main.transform.rotation = linkPanelCamera.transform.rotation;
+		AgeData age = getAge(ageName);
+		pushAgeSettings(age);
 		yield return new WaitForSeconds(0.5f);
 
 		fadeStartTime = routineElapsedTime;
@@ -51,6 +62,24 @@ public class LinkController : MonoBehaviour {
 			screenOverlay.color = overlayColor;
 			yield return null;
 			routineElapsedTime += Time.deltaTime;
+		}
+	}
+
+	AgeData getAge(string ageName) {
+		return System.Array.Find(ages, (AgeData obj) => {
+			return obj.name.Equals(ageName);
+		});
+	}
+
+	void pushAgeSettings(AgeData age) {
+		Camera.main.cullingMask = age.cullingMask;
+
+		Camera.main.transform.position = age.linkPanelCamera.transform.position;
+		Camera.main.transform.rotation = age.linkPanelCamera.transform.rotation;
+
+		Skybox ageSkybox = age.linkPanelCamera.GetComponent<Skybox>();
+		if (ageSkybox != null) {
+			Camera.main.GetComponent<Skybox>().material = ageSkybox.material;
 		}
 	}
 }

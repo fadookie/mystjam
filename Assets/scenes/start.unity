@@ -188,7 +188,7 @@ GameObject:
   - 33: {fileID: 136955841}
   - 65: {fileID: 136955840}
   - 23: {fileID: 136955839}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Cube (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -324,8 +324,8 @@ GameObject:
   - 223: {fileID: 453477663}
   - 114: {fileID: 453477662}
   - 114: {fileID: 453477661}
-  m_Layer: 5
-  m_Name: LinkingBookCanvas
+  m_Layer: 8
+  m_Name: VlahsLinkingBookCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -572,7 +572,7 @@ GameObject:
   - 33: {fileID: 1132018660}
   - 65: {fileID: 1132018659}
   - 23: {fileID: 1132018658}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -646,7 +646,7 @@ GameObject:
   - 224: {fileID: 1256238872}
   - 222: {fileID: 1256238874}
   - 114: {fileID: 1256238873}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -716,7 +716,7 @@ GameObject:
   - 33: {fileID: 1312105892}
   - 64: {fileID: 1312105891}
   - 23: {fileID: 1312105890}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Plane (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -793,6 +793,7 @@ GameObject:
   - 124: {fileID: 1474037342}
   - 81: {fileID: 1474037341}
   - 82: {fileID: 1474037346}
+  - 45: {fileID: 1474037347}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -845,7 +846,7 @@ Camera:
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 256
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -941,6 +942,14 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
+--- !u!45 &1474037347
+Skybox:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1474037340}
+  m_Enabled: 1
+  m_CustomSkybox: {fileID: 2100000, guid: a8b7544f2185b4619a5f3097ef05cc59, type: 2}
 --- !u!1 &1483684691
 GameObject:
   m_ObjectHideFlags: 0
@@ -952,7 +961,7 @@ GameObject:
   - 33: {fileID: 1483684694}
   - 64: {fileID: 1483684693}
   - 23: {fileID: 1483684692}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Plane (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1027,7 +1036,7 @@ GameObject:
   - 33: {fileID: 1675296232}
   - 64: {fileID: 1675296231}
   - 23: {fileID: 1675296230}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Plane
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1103,7 +1112,7 @@ GameObject:
   - 65: {fileID: 1747007051}
   - 23: {fileID: 1747007050}
   - 114: {fileID: 1747007054}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: MoveCube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1259,8 +1268,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aae3a9b1e1af543a79bba1abfe3bcb77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  linkPanelCamera: {fileID: 2080881207}
   screenOverlay: {fileID: 867860346}
+  ages:
+  - name: start
+    cullingMask:
+      serializedVersion: 2
+      m_Bits: 256
+    linkPanelCamera: {fileID: 1474037340}
+  - name: vlahs
+    cullingMask:
+      serializedVersion: 2
+      m_Bits: 512
+    linkPanelCamera: {fileID: 2080881207}
 --- !u!1 &1801796369
 GameObject:
   m_ObjectHideFlags: 0
@@ -1272,7 +1291,7 @@ GameObject:
   - 222: {fileID: 1801796372}
   - 114: {fileID: 1801796371}
   - 114: {fileID: 1801796373}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: LinkPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1375,7 +1394,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: tay
+          m_StringArgument: vlahs
           m_BoolArgument: 0
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
@@ -1390,7 +1409,7 @@ GameObject:
   - 224: {fileID: 2029196601}
   - 222: {fileID: 2029196603}
   - 114: {fileID: 2029196602}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1465,8 +1484,9 @@ GameObject:
   - 124: {fileID: 2080881211}
   - 92: {fileID: 2080881210}
   - 114: {fileID: 2080881208}
-  m_Layer: 0
-  m_Name: LinkPanelCamera
+  - 45: {fileID: 2080881209}
+  m_Layer: 9
+  m_Name: VlahsLinkPanelCamera
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1484,6 +1504,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveAmplitude: 1
+--- !u!45 &2080881209
+Skybox:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2080881207}
+  m_Enabled: 1
+  m_CustomSkybox: {fileID: 2100000, guid: e5a6cf6af9d8a4b089347aa16342477f, type: 2}
 --- !u!92 &2080881210
 Behaviour:
   m_ObjectHideFlags: 0
@@ -1522,7 +1550,7 @@ Camera:
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 512
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 8400000, guid: 74255eeeee4664df0b27f87fb673c20a, type: 2}
   m_TargetDisplay: 0
