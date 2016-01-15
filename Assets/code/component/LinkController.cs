@@ -4,17 +4,12 @@ using System.Collections;
 public class LinkController : MonoBehaviour {
 
 	// Use this for initialization
-	void Start () {
-	
+	void Awake () {
+		Services.instance.Set<LinkController>(this);
 	}
 	
-	// Update is called once per frame
-	void Update () {
-	
-	}
-
 	public void LinkTo(string linkName) {
 		Debug.LogFormat("LinkController: Link to {0}", linkName);
-		SoundManager.instance.playOneShot(SoundManager.Sound.Link);
+		Services.instance.Get<SoundManager>().playOneShot(SoundManager.Sound.Link);
 	}
 }

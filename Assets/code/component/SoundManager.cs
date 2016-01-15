@@ -10,10 +10,8 @@ public class SoundManager : MonoBehaviour {
 		Link,
 	}
 
-	public static SoundManager instance { get; set; }
-
 	void Awake() {
-		instance = this;
+		Services.instance.Set<SoundManager>(this);
 	}
 
 	public void playOneShot(Sound sound) {
