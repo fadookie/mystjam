@@ -48,7 +48,7 @@
 			half4 frag (v2f i) : SV_Target
 			{
 				// sample the texture
-				half grayscale = i.localpos.y / 512;
+				half grayscale = i.localpos.y / 256; //divide by 512 for full heightmap range
 				half4 col = half4(grayscale, grayscale, grayscale, 1);
 				// apply fog
 				UNITY_APPLY_FOG(i.fogCoord, col);
