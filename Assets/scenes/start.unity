@@ -1101,6 +1101,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aae3a9b1e1af543a79bba1abfe3bcb77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  linkPanelCamera: {fileID: 2080881207}
 --- !u!1 &1801796369
 GameObject:
   m_ObjectHideFlags: 0
