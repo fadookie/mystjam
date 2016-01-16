@@ -11,10 +11,12 @@ public class LinkController : MonoBehaviour {
 	public class AgeData {
 		public string name;
 		public Camera linkPanelCamera;
+		public GameObject ageRootNode;
 		public GameObject linkLocation;
 	}
 
 	public AgeData[] ages;
+	public AgeData currentAge;
 
 	// Use this for initialization
 	void Awake () {
@@ -22,7 +24,7 @@ public class LinkController : MonoBehaviour {
 	}
 
 	void Start() {
-//		pushAgeSettings(ages[0]);
+		currentAge = getAge("start");
 	}
 	
 	public void LinkTo(string ageName) {
@@ -72,22 +74,26 @@ public class LinkController : MonoBehaviour {
 		});
 	}
 
-	void pushAgeSettings(AgeData age) {
+	void pushAgeSettings(AgeData newAge) {
+		currentAge.ageRootNode.SetActive(false);
+
 		//Make sure FPSController is enabled as it's off in start age
 		var fpc = Services.instance.Get<FirstPersonController>();
 		fpc.GetComponent<CharacterController>().enabled = true;
 		fpc.enabled = true;
 
 		//Update FPSController settings
-		fpc.transform.position = age.linkLocation.transform.position;
-		fpc.transform.rotation = age.linkLocation.transform.rotation;
+		fpc.transform.position = newAge.linkLocation.transform.position;
+		fpc.transform.rotation = newAge.linkLocation.transform.rotation;
 
 		//Update camera settings
-		Camera.main.cullingMask = age.linkPanelCamera.cullingMask;
+		Camera.main.cullingMask = newAge.linkPanelCamera.cullingMask;
 
-		Skybox ageSkybox = age.linkPanelCamera.GetComponent<Skybox>();
+		Skybox ageSkybox = newAge.linkPanelCamera.GetComponent<Skybox>();
 		if (ageSkybox != null) {
 			Camera.main.GetComponent<Skybox>().material = ageSkybox.material;
 		}
+
+		currentAge = newAge;
 	}
 }
