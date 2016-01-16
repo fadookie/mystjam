@@ -682,7 +682,7 @@ RectTransform:
   m_RootOrder: 0
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0.19, y: 0.08}
+  m_AnchoredPosition: {x: 0.49, y: 0.08}
   m_SizeDelta: {x: 722, y: 591}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &455838216
@@ -1831,9 +1831,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   screenOverlay: {fileID: 867860346}
   ages:
+  - name: start
+    linkPanelCamera: {fileID: 0}
+    ageRootNode: {fileID: 230032880}
+    linkLocation: {fileID: 0}
   - name: vlahs
     linkPanelCamera: {fileID: 2080881212}
+    ageRootNode: {fileID: 1081080896}
     linkLocation: {fileID: 767270239}
+  currentAge:
+    name: 
+    linkPanelCamera: {fileID: 0}
+    ageRootNode: {fileID: 0}
+    linkLocation: {fileID: 0}
 --- !u!1 &1801796369
 GameObject:
   m_ObjectHideFlags: 0
