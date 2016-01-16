@@ -27,6 +27,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
         [SerializeField] private AudioClip[] m_FootstepSounds;    // an array of footstep sounds that will be randomly selected from.
         [SerializeField] private AudioClip m_JumpSound;           // the sound played when character leaves the ground.
         [SerializeField] private AudioClip m_LandSound;           // the sound played when character touches back on ground.
+        public bool m_PlaySounds = true;
 
         private Camera m_Camera;
         private bool m_Jump;
@@ -86,8 +87,10 @@ namespace UnityStandardAssets.Characters.FirstPerson
 
         private void PlayLandingSound()
         {
-            m_AudioSource.clip = m_LandSound;
-            m_AudioSource.Play();
+			if (m_PlaySounds) {
+	            m_AudioSource.clip = m_LandSound;
+	            m_AudioSource.Play();
+			}
             m_NextStep = m_StepCycle + .5f;
         }
 
@@ -136,8 +139,10 @@ namespace UnityStandardAssets.Characters.FirstPerson
 
         private void PlayJumpSound()
         {
-            m_AudioSource.clip = m_JumpSound;
-            m_AudioSource.Play();
+			if (m_PlaySounds) {
+	            m_AudioSource.clip = m_JumpSound;
+	            m_AudioSource.Play();
+			}
         }
 
 
@@ -162,7 +167,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
 
         private void PlayFootStepAudio()
         {
-            if (!m_CharacterController.isGrounded)
+			if (!m_CharacterController.isGrounded || !m_PlaySounds)
             {
                 return;
             }
