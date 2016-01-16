@@ -39,3 +39,5 @@ sysinfo.txt
 builds/
 #Vim swapfiles
 *.swp
+*.wings~
+*.wings#
