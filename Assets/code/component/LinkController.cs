@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using UnityStandardAssets.Characters.FirstPerson;
 
 public class LinkController : MonoBehaviour {
 
@@ -10,6 +11,7 @@ public class LinkController : MonoBehaviour {
 	public class AgeData {
 		public string name;
 		public Camera linkPanelCamera;
+		public GameObject linkLocation;
 	}
 
 	public AgeData[] ages;
@@ -71,11 +73,17 @@ public class LinkController : MonoBehaviour {
 	}
 
 	void pushAgeSettings(AgeData age) {
-		Debug.LogFormat("linkpanelam {0}", age.linkPanelCamera.cullingMask);
-		Camera.main.cullingMask = age.linkPanelCamera.cullingMask;
+		//Make sure FPSController is enabled as it's off in start age
+		var fpc = Services.instance.Get<FirstPersonController>();
+		fpc.GetComponent<CharacterController>().enabled = true;
+		fpc.enabled = true;
 
-		Camera.main.transform.position = age.linkPanelCamera.transform.position;
-		Camera.main.transform.rotation = age.linkPanelCamera.transform.rotation;
+		//Update FPSController settings
+		fpc.transform.position = age.linkLocation.transform.position;
+		fpc.transform.rotation = age.linkLocation.transform.rotation;
+
+		//Update camera settings
+		Camera.main.cullingMask = age.linkPanelCamera.cullingMask;
 
 		Skybox ageSkybox = age.linkPanelCamera.GetComponent<Skybox>();
 		if (ageSkybox != null) {
