@@ -18,6 +18,8 @@ public class LinkController : MonoBehaviour {
 	public AgeData[] ages;
 	public AgeData currentAge;
 
+	bool linkInProgress = false;
+
 	// Use this for initialization
 	void Awake () {
 		Services.instance.Set<LinkController>(this);
@@ -28,8 +30,11 @@ public class LinkController : MonoBehaviour {
 	}
 	
 	public void LinkTo(string ageName) {
-		Debug.LogFormat("LinkController: Link to {0}", ageName);
-		StartCoroutine(linkRoutine(ageName));
+		if (!linkInProgress) {
+			Debug.LogFormat("LinkController: Link to {0}", ageName);
+			linkInProgress = true;
+			StartCoroutine(linkRoutine(ageName));
+		}
 	}
 
 	IEnumerator linkRoutine(string ageName) {
@@ -66,6 +71,9 @@ public class LinkController : MonoBehaviour {
 			yield return null;
 			routineElapsedTime += Time.deltaTime;
 		}
+
+		screenOverlay.color = Color.clear;
+		linkInProgress = false;
 	}
 
 	AgeData getAge(string ageName) {
