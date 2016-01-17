@@ -13,6 +13,7 @@ public class LinkController : MonoBehaviour {
 		public Camera linkPanelCamera;
 		public GameObject ageRootNode;
 		public GameObject linkLocation;
+		public SoundManager.LoopType ambience;
 		public LayerMask cursorRaycastLayers;
 	}
 
@@ -28,6 +29,7 @@ public class LinkController : MonoBehaviour {
 
 	void Start() {
 		currentAge = getAge("start");
+		Services.instance.Get<SoundManager>().playLoop(currentAge.ambience, 0.0f);
 	}
 	
 	public void LinkTo(string ageName) {
@@ -105,6 +107,8 @@ public class LinkController : MonoBehaviour {
 		if (ageSkybox != null) {
 			Camera.main.GetComponent<Skybox>().material = ageSkybox.material;
 		}
+
+		Services.instance.Get<SoundManager>().playLoop(newAge.ambience, 0.5f);
 
 		currentAge = newAge;
 	}
