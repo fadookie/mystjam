@@ -4,10 +4,12 @@ using System.Collections;
 public class SoundManager : MonoBehaviour {
 
 	public AudioClip linkSound;
+	public AudioClip pageFlipSound;
 	public AudioSource source;
 
 	public enum Sound {
 		Link,
+		PageFlip,
 	}
 
 	void Awake() {
@@ -22,6 +24,8 @@ public class SoundManager : MonoBehaviour {
 		switch(sound) {
 			case Sound.Link:
 				return linkSound;
+			case Sound.PageFlip:
+				return pageFlipSound;
 			default:
 				return null;
 		}

@@ -1,11 +1,17 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityStandardAssets.Characters.FirstPerson;
 
 public class CursorController : MonoBehaviour {
 	public GameObject cursor;
 	public LayerMask raycastLayers;
+	public float raycastDistance = Mathf.Infinity;
+
+	//For interactable objects
+	public GameObject journalPopup;
 
 	Vector2 screenPoint;
+	bool viewLocked = false;
 
 	void Start () {
 		//Always cast from center of screen
@@ -14,6 +20,10 @@ public class CursorController : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
+		if (viewLocked) {
+			return;
+		}
+
 		Ray cursorProjection = Camera.main.ScreenPointToRay(screenPoint);
 //		Debug.DrawRay(cursorProjection.origin, cursorProjection.direction, Color.red, 10f);
 
@@ -21,7 +31,7 @@ public class CursorController : MonoBehaviour {
 		if(Physics.Raycast(
 			cursorProjection,
 			out hitInfo,
-			Mathf.Infinity,
+			raycastDistance,
 			raycastLayers)
 		) {
 //			Debug.LogFormat("Raycast hit {0}", hitInfo.collider.gameObject.name);
@@ -33,6 +43,9 @@ public class CursorController : MonoBehaviour {
 
 				if(Input.GetButtonDown("Fire1")) {
 					Debug.Log("Click journal");
+					Services.instance.Get<SoundManager>().playOneShot(SoundManager.Sound.PageFlip);
+					journalPopup.SetActive(true);
+					lockView(true);
 				}
 			} else {
 				setCursorActive(false);
@@ -46,5 +59,15 @@ public class CursorController : MonoBehaviour {
 
 	void setCursorActive(bool show) {
 		cursor.SetActive(show);
+	}
+
+	public void lockView(bool lockView) {
+		viewLocked = lockView;
+
+		Services.instance.Get<FirstPersonController>().m_MouseLook.SetCursorLock(!lockView);
+
+		if(lockView) {
+			setCursorActive(false);
+		}
 	}
 }
