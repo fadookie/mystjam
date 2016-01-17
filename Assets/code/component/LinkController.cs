@@ -13,6 +13,7 @@ public class LinkController : MonoBehaviour {
 		public Camera linkPanelCamera;
 		public GameObject ageRootNode;
 		public GameObject linkLocation;
+		public LayerMask cursorRaycastLayers;
 	}
 
 	public AgeData[] ages;
@@ -96,6 +97,9 @@ public class LinkController : MonoBehaviour {
 
 		//Update camera settings
 		Camera.main.cullingMask = newAge.linkPanelCamera.cullingMask;
+
+		//Update picking settings
+		fpc.GetComponent<CursorController>().raycastLayers = newAge.cursorRaycastLayers;
 
 		Skybox ageSkybox = newAge.linkPanelCamera.GetComponent<Skybox>();
 		if (ageSkybox != null) {
