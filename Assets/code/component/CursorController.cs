@@ -42,7 +42,6 @@ public class CursorController : MonoBehaviour {
 				setCursorActive(true);
 
 				if(Input.GetButtonDown("Fire1")) {
-					Debug.Log("Click journal");
 					Services.instance.Get<SoundManager>().playOneShot(SoundManager.Sound.PageFlip);
 					journalPopup.SetActive(true);
 					lockView(true);

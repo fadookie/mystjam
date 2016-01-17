@@ -44,7 +44,6 @@ public class SoundManager : MonoBehaviour {
 		if (type == LoopType.None) {
 			loopSource.Stop();
 		} else {
-			Debug.LogFormat("play loop {0}", type);
 			LoopData loop = getLoop(type);
 			loopSource.clip = loop.clip;
 			loopSource.volume = loop.volume;
