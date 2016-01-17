@@ -218,17 +218,16 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque sed
-    tortor eu augue imperdiet elementum in mattis erat. Nullam elementum commodo faucibus.
-    Morbi quam tortor, ullamcorper eu elit vitae, vehicula varius nulla. Aliquam sed
-    venenatis risus. Phasellus dapibus nibh in egestas semper. Nulla blandit felis
-    a massa aliquam tristique. Proin a enim et nisi scelerisque pellentesque. Nullam
-    elementum nisl vel nunc dictum, tristique porta elit euismod. Suspendisse sit
-    amet faucibus nisl. Nunc sed risus nec leo fermentum euismod. Suspendisse lacinia
-    vestibulum risus, sed molestie nulla ultrices quis. Curabitur ac viverra leo.
-    Donec nec est turpis. Praesent aliquam tempor arcu, at aliquet ipsum mollis vitae.
-    Vestibulum ut tortor et odio egestas eleifend. Praesent suscipit urna mi. Cras
-    in risus sit amet.
+  m_Text: 16.01.16      Construction of the library is nearing completion. I've been
+    having second thoughts about relocating my books here. Every time I link to V'lahs,
+    it is as if I am looking failure in the maw. I fear I cannot bear the sight of
+    it for one more day. The time I spent creating this place is a footnote compared
+    to the waste of a Kor'nea- a blank descriptive book. I have only a few left from
+    my last expidition to K'veer. My hope was to find resources here to aid in the
+    creation of new Kortee'nea, but without access to the secret knowledge of the
+    Guilds I fear it may be a futile quest. I will leave my journal here on V'lahs.
+    Should you happen upon this place, feel free to make it your home. It never truly
+    was mine.
 --- !u!222 &5384295
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -713,8 +712,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 257975682}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 429, y: -215.36, z: -1236.9174}
+  m_LocalRotation: {x: 0.08717232, y: 0.89959055, z: 0.21045254, w: -0.3726227}
+  m_LocalPosition: {x: 268.43732, y: -228.01173, z: 291.56763}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -2655,7 +2654,7 @@ MonoBehaviour:
   - name: vlahs
     linkPanelCamera: {fileID: 2080881212}
     ageRootNode: {fileID: 1081080896}
-    linkLocation: {fileID: 1697041916}
+    linkLocation: {fileID: 767270239}
     cursorRaycastLayers:
       serializedVersion: 2
       m_Bits: 1024
@@ -2852,7 +2851,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 16.01.16      Upon linking to V'lahs, the first sensation I experienced
+  m_Text: 15.05.20      Upon linking to V'lahs, the first sensation I experienced
     was the brisk ocean breeze against my face. Then, the sounds of the water lapping
     at the shore. With great expectations, I approached the edge of the cliff, excited
     to see the results of my long labors attempting to describe a natural staircase.
@@ -2881,6 +2880,7 @@ GameObject:
   - 124: {fileID: 2080881211}
   - 92: {fileID: 2080881210}
   - 45: {fileID: 2080881209}
+  - 114: {fileID: 2080881208}
   m_Layer: 9
   m_Name: VlahsLinkPanelCamera
   m_TagString: Untagged
@@ -2888,6 +2888,19 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &2080881208
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2080881207}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4bd568ab0210344768386cdd861ed743, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 8
+  pivot: {fileID: 918156682}
 --- !u!45 &2080881209
 Skybox:
   m_ObjectHideFlags: 0
